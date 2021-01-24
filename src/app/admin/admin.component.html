@@ -1,0 +1,91 @@
+<app-header></app-header>
+<div>
+  <div class="container">
+    <div style="text-align:right"><button class="btn btn-danger" (click)="logout()">
+        Logout
+      </button>
+    </div>
+    <div class="card m-7">
+      <h5 class="card-header">Add Movie</h5>
+      <div class="card-body">
+        <form [formGroup]="addMovie" (ngSubmit)="addMoviee()">
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Name</label>
+              <input type="text" formControlName="movieName" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.movieName.errors }" />
+              <div *ngIf="submitted && f.movieName.errors" class="invalid-feedback">
+                <div *ngIf="f.movieName.errors.required">Movie Name is required</div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Category</label>
+              <input type="text" formControlName="movieCategory" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.movieCategory.errors }" />
+              <div *ngIf="submitted && f.movieCategory.errors" class="invalid-feedback">
+                <div *ngIf="f.movieCategory.errors.required">Movie Category is required</div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Rating</label>
+              <input type="text" formControlName="movieRating" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.movieRating.errors }" />
+              <div *ngIf="submitted && f.movieRating.errors" class="invalid-feedback">
+                <div *ngIf="f.movieRating.errors.required">Provide Rating from 1-5</div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Release Date</label>
+              <input type="text" formControlName="movieReleaseDate" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.movieReleaseDate.errors }" />
+              <div *ngIf="submitted && f.movieReleaseDate.errors" class="invalid-feedback">
+                <div *ngIf="f.movieReleaseDate.errors.required">Release Date is Required</div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Budget</label>
+              <input type="text" formControlName="movieBudget" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.movieBudget.errors }" />
+              <div *ngIf="submitted && f.movieBudget.errors" class="invalid-feedback">
+                <div *ngIf="f.movieBudget.errors.required">Budget is required</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-success">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <section class="main">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Rating</th>
+                <th>Release Date</th>
+                <th>Budget</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let movie of movies">
+                <td>{{movie.movieName}}</td>
+                <td>{{movie.movieCategory}}</td>
+                <td>{{movie.movieRating}}</td>
+                <td>{{movie.movieReleaseDate}}</td>
+                <td>{{movie.movieBudget}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary">Edit</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteMovie(movie)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

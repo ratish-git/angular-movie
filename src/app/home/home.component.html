@@ -1,0 +1,30 @@
+<app-header>Loading....</app-header>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <section class="main">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Rating</th>
+                            <th>Release Date</th>
+                            <th>Budget</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let movie of movies">
+                            <td>{{movie.movieName}}</td>
+                            <td>{{movie.movieCategory}}</td>
+                            <td>{{movie.movieRating}}</td>
+                            <td>{{movie.movieReleaseDate}}</td>
+                            <td>{{movie.movieBudget}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</div>
