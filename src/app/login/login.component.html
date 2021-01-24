@@ -2,7 +2,7 @@
 <div class="col-sm-3">
   <h5 class="card-header">Admin login</h5>
 
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.email)">
     <label>Email</label>
     <input type="text" formControlName="email" class="form-control"
       [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }" />

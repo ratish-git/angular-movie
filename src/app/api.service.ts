@@ -59,7 +59,7 @@ export class ApiService {
   getAdminUsers(email: string): Promise<Array<User>> {
     const url = `${this.adminUsers}/${email}`;
     return this.httpClient
-      .get(this.adminUsers)
+      .get(url)
       .toPromise()
       .then((response) => response as User[])
       .catch(this.handleError);
