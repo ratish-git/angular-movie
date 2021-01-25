@@ -85,6 +85,10 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  editMovie(movie: Movie): void {
+    this.router.navigateByUrl('/editMovie');
+  };
+
   deleteMovie(movie: Movie) {
     this.apiService.deleteMovieByName(movie.movieName).then(
       (movies) => {
@@ -94,5 +98,6 @@ export class AdminComponent implements OnInit {
         console.log(err);
       }
     );
+    
   }
 }

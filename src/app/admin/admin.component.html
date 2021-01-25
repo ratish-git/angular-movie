@@ -86,7 +86,7 @@
                 <td>{{movie.movieReleaseDate}}</td>
                 <td>{{movie.movieBudget}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary">Edit</button>
+                  <button type="button" class="btn btn-primary" (click)="editMovie(movie)">Edit</button>
                   <button type="button" class="btn btn-danger" (click)="deleteMovie(movie)">Delete</button>
                 </td>
               </tr>

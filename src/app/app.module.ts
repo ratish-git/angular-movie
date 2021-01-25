@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditMovieComponent } from './edit-movie/edit-movie.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     HomeComponent,
     MovieComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditMovieComponent
   ],
   imports: [
     BrowserModule,
