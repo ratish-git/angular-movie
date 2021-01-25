@@ -28,20 +28,28 @@
             </div>
             <div class="form-group col">
               <label>Rating</label>
-              <input type="text" formControlName="movieRating" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.movieRating.errors }" />
+              <select formControlName="movieRating" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.movieRating.errors }">
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                <option value="5">Five</option>
+            </select>
               <div *ngIf="submitted && f.movieRating.errors" class="invalid-feedback">
                 <div *ngIf="f.movieRating.errors.required">Provide Rating from 1-5</div>
               </div>
             </div>
             <div class="form-group col">
-              <label>Release Date</label>
-              <input type="text" formControlName="movieReleaseDate" class="form-control"
+              <label>Date</label>
+              <input matInput [matDatepicker]="picker" formControlName="movieReleaseDate" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.movieReleaseDate.errors }" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
               <div *ngIf="submitted && f.movieReleaseDate.errors" class="invalid-feedback">
                 <div *ngIf="f.movieReleaseDate.errors.required">Release Date is Required</div>
               </div>
             </div>
+
             <div class="form-group col">
               <label>Budget</label>
               <input type="text" formControlName="movieBudget" class="form-control"

@@ -11,6 +11,9 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MovieComponent } from './movie/movie.component';
 import { RegisterComponent } from './register/register.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -27,9 +30,10 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,HttpClientModule
+    AppRoutingModule,HttpClientModule,
+    MatDatepickerModule,MatNativeDateModule,BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule,MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
