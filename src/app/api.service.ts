@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Movie } from './movie';
 import { User } from '../app/user';
-import { Observable } from 'rxjs';
 import { UserR } from './userR';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,18 @@ export class ApiService {
   logSomeMessage(msg: any) {
     console.log('Message from consumer is : ' + msg);
   }
+
+  private readonly getmovieURL = 'http://localhost:8080/user/getMovie/';
+  getMovieByName(movieName: string): Promise<Array<Movie>> {
+    const mv = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient
+      .get(this.getmovieURL+movieName, { headers: mv })
+      .toPromise()
+      .then((response) => response as any)
+      .catch(this.handleError);
+  }
+  
+
 
   private readonly movieURL = 'http://localhost:8080/user/getAllMovies';
   getAllMovies(): Promise<Array<Movie>> {

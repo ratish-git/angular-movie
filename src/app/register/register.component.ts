@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { UserR } from '../userR';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,13 +11,16 @@ import { UserR } from '../userR';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  responded="Add Details to Sign Up";
   registerForm!: FormGroup;
   submitted = false;
   public users!: UserR[];
 
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private httpClient: HttpClient,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -40,7 +45,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  addUser() {
+  private readonly addUserUrl = 'http://localhost:8080/user/addUser';
+
+  addUser(postData:UserR) {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -54,14 +61,13 @@ export class RegisterComponent implements OnInit {
     let email = this.f['email'].value;
     let password = this.f['password'].value;
     let user = new UserR(role, fname, lname, email, password);
-    this.apiService.addUser(user).then(
-      (users) => {
-        this.users = users;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.httpClient
+      .post(this.addUserUrl, user,{responseType:'text'})
+      .subscribe((responseData) => {
+        console.log(responseData);  
+        this.responded == responseData;
+      });
+      this.router.navigateByUrl('/movie');
   }
 
   onReset() {

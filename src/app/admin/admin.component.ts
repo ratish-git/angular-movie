@@ -85,7 +85,8 @@ export class AdminComponent implements OnInit {
     );
   }
 
-  editMovie(movie: Movie): void {
+  editMovie(movie: Movie) {
+    localStorage.setItem("editMovie", movie.movieName.toString());
     this.router.navigateByUrl('/editMovie');
   };
 

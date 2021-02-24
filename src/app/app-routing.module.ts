@@ -6,6 +6,7 @@ import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {EditMovieComponent} from './edit-movie/edit-movie.component';
+import { MovieComponent } from './movie/movie.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -16,7 +17,10 @@ const routes: Routes = [
   { path: 'editMovie', component: EditMovieComponent },
   { path: 'register', pathMatch: 'full', redirectTo: 'register' },
   { path: 'register', component: RegisterComponent },
+  { path: 'movie', pathMatch: 'full', redirectTo: 'movie' },
+  { path: 'movie', component: MovieComponent },
   { path: 'admin', component: AdminComponent , canActivate:[AuthGuard]},
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
