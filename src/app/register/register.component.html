@@ -1,7 +1,7 @@
 <app-header>Loading....</app-header>
 <div class="card m-3">
-    <!-- <input type="text" class="form-control"[(ngModel)]="responded"> -->
-    <h5 class="card-header">Sign up</h5>
+   <input type="text" disabled class="form-control"[(ngModel)]="responded">
+    <h5 class="card-header">Sign-Up</h5>
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="addUser(registerForm.value)">
             <div class="form-row">

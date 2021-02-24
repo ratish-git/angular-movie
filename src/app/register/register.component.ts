@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { UserR } from '../userR';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  responded="Add Details to Sign Up";
+  responded:any="Add Below  Required fields to Sign Up";
   registerForm!: FormGroup;
   submitted = false;
   public users!: UserR[];
@@ -65,9 +66,9 @@ export class RegisterComponent implements OnInit {
       .post(this.addUserUrl, user,{responseType:'text'})
       .subscribe((responseData) => {
         console.log(responseData);  
-        this.responded == responseData;
+        this.responded = responseData;
       });
-      this.router.navigateByUrl('/movie');
+      // this.router.navigateByUrl('/movie');
   }
 
   onReset() {
