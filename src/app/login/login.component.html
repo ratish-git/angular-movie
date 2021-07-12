@@ -1,7 +1,7 @@
 <app-header>Loading....</app-header>
 <div class="col-sm-3">
   <h5 class="card-header">Admin login</h5>
-
+  <input type="text" disabled class="form-control"[(ngModel)]="responded">
   <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.email)">
     <label>Email</label>
     <input type="text" formControlName="email" class="form-control"

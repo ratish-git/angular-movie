@@ -3,6 +3,7 @@ import { Movie } from '../movie';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-movie',
@@ -17,7 +18,8 @@ export class EditMovieComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private httpClient: HttpClient,
   ) {
    // const movieNamefromStorage = JSON.stringify(localStorage.getItem('editMovie') || '{}');
 
@@ -37,17 +39,25 @@ export class EditMovieComponent implements OnInit {
    
   }
 
+  private readonly getmovieURL = 'http://localhost:8080/user/getMovie/';
   getMoviedByName(movieNamefromStorage:string) {
     console.log("fromS"+movieNamefromStorage)
-    this.apiService.getMovieByName(movieNamefromStorage).then(
-      (movies) => {
-        this.movies = movies;
-        console.log(movies);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.httpClient
+    .get(this.getmovieURL+movieNamefromStorage)
+    .subscribe(responseData => {
+      console.log(responseData); 
+    });
+
+
+    // this.apiService.getMovieByName(movieNamefromStorage).then(
+    //   (movies) => {
+    //     this.movies = movies;
+    //     console.log(movies);
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
   }
 
     // this.apiService.getMovieByName(movieNamefromStorage)

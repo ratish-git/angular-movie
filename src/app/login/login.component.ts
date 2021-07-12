@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { AuthService } from '../auth.service';
 import { ApiService } from '../api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,15 @@ import { ApiService } from '../api.service';
   providers: [ApiService],
 })
 export class LoginComponent implements OnInit {
-  public user!: User[];
+  responded:any="Enter Valid Credentials";
+  user: User[]=[];
   //
   constructor(
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private httpClient: HttpClient
   ) {}
   loginForm!: FormGroup;
   submitted = false;
@@ -33,6 +36,8 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  private readonly adminUsers = 'http://localhost:8080/user/getAdminUser';
+
   login(email: string): any {
     this.submitted = true;
     // stop here if form is invalid
@@ -42,6 +47,8 @@ export class LoginComponent implements OnInit {
     this.apiService.getAdminUsers(email).then(
       (user) => {
         this.user = user;
+        console.log(user)
+
         this.authService.login(this.loginForm.value);
         this.router.navigateByUrl('/admin');
       },
